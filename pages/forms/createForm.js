@@ -16,11 +16,7 @@ const createForm = () => {
         title: '',
         description:'',
         status: false,
-        questions:[{
-            type:'',
-            question:'',
-            choices:[],
-        }],
+        questions:[],
         responses:[
             {
               type:'',
@@ -49,55 +45,69 @@ const createForm = () => {
         }
     } )
 
+    ///USE STATE VARIABLES
+
     const [title,setTitle] = useState('')
     const [description,setDescription] = useState('')
-    const [questions,setQuestions] = useState([])
-    const [choices, setChoices] = useState([])
+    const [questions,setQuestions] = useState([])     ///  questions container
 
-
-
-
-    const updateChoices = (index, value) => {
-        console.log('index: ' + index)
-        let newArr = [...choices]
-        newArr[index] = value
-        setChoices(newArr)
-    }
-
-    const choicesHandler =(id)=> {
-       let questArr =[...questions]
-       let questObj = questArr[id]
-       questObj.choices = [...questObj.choices, 'Option']
-       questArr[id] = questObj
-       setQuestions(questArr)
-
-    }
-
-    
+    // set the type of question and add new index on questions CONTAINER
     const setQuestionType = (t) =>{
-      
-        console.log('type',t)
 
-        let questObj = {
+        let questObj = {   
             type:t,
-            choices: []
+            question:'',
+            choices: [],
+            responses:[]
         }
-        
-         console.log('quest',questObj)
-
-         setQuestions([...questions, questObj])
-         
-         console.log('q',questions)
-       
-        
-      
+         setQuestions([...questions, questObj]) // add new index on questions CONTAINER
     }
-        
-   // console.log(choices)
+
+     // add new option when 'add choices' clicked
+     const choicesHandler =(id)=> {
+        let questArr =[...questions]
+        let questObj = questArr[id]
  
-   
+        questObj.choices = [...questObj.choices, 'Option']
+        questArr[id] = questObj
+        setQuestions(questArr)
+ 
+     }
 
+    // update the value of choices onChange
+    const updateChoices = (index,i, value) => {
+        let questArr =[...questions]
+        let questObj = questArr[index]
 
+        questObj.choices[i] = value
+        questArr[index] = questObj
+        setQuestions(questArr)
+    }
+
+    //update question onchange
+    const updateQuestion = (index, value)=>{
+       let questArr = [...questions]
+       let questObj = questArr[index] 
+
+       questObj.question = value
+       questArr[index] = questObj
+
+       setQuestions(questArr)
+       console.log('questions:', questions)
+    }
+
+    //submit form
+    const submitHandler = (e)=>{
+        e.preventDefault()
+        let newForm = form
+
+        newForm.title = title
+        newForm.description = description
+        newForm.questions = questions
+
+        setForm(newForm)
+        console.log('form',  form)
+    }
 
     return (
         <div className='py-10 px-10'>
@@ -131,162 +141,112 @@ const createForm = () => {
                 />
         </div>
 
+        {/*  Dropdown menu for the type of question*/}
+        <div> 
+            <Menu as="div" className="relative inline-block text-left">
+                <div >
+                    <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                Add Question
+                    <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+                    </Menu.Button>
+                </div>
 
-        <div>
-
-         <Menu as="div" className="relative inline-block text-left">
-        <div >
-
-            <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-           Add Question
-            <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-            </Menu.Button>
-        </div>
-
-        <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-        >
-            <Menu.Items className="origin-top-right right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-                <Menu.Item>
-                {({ active }) => (
-                    <a
-                    href="#"
-                    className={classNames(
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
+                <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                >
+                <Menu.Items className="origin-top-right right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            
+                <div className="py-1">
+                    <Menu.Item>
+                    {({ active }) => (
+                        <a
+                        href="#"
+                        className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                        )}
+                        onClick={(e)=>setQuestionType('multiple choice')}
+                        >
+                        Multiple Choice
+                        </a>
                     )}
-                    onClick={(e)=>setQuestionType('multiple choice')}
-                    >
-                    Multiple Choice
-                    </a>
-                )}
-                </Menu.Item>
-                <Menu.Item>
-                {({ active }) => (
-                    <a
-                    href="#"
-                    className={classNames(
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
+                    </Menu.Item>
+
+                    <Menu.Item>
+                    {({ active }) => (
+                        <a
+                        href="#"
+                        className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                        )}
+                        onClick={(e)=>setQuestionType('checkbox')}
+                        >
+                        Checkbox
+                        </a>
                     )}
-                    onClick={(e)=>setQuestionType('checkbox')}
-                    >
-                    Checkbox
-                    </a>
-                )}
-                </Menu.Item>
-                <Menu.Item>
-                {({ active }) => (
-                    <a
-                    href="#"
-                    className={classNames(
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
-                    )}
-                    onClick={(e)=>setQuestionType('text')}
-                    >
-                   Text
-                    </a>
-                )}
-                </Menu.Item>
-                
-                <Menu.Item>
-                {({ active }) => (
-                    <a
-                    href="#"
-                    className={classNames(
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
-                    )}
-                   
-                    onClick={(e)=>setQuestionType('paragraph')}
-                    >
-                   Paragraph
-                    </a>
-                )}
-                </Menu.Item>
-               
-            </div>
-            </Menu.Items>
-        </Transition>
-        </Menu>
-        </div>
+                    </Menu.Item>
 
-        { /*  
-
-        <div className='flex'>
-              
-                {type === 'multiple choice'?
-                (  
-                <div> 
-                    <h1> Multiple Choice </h1>
-
-                    <div  className='py-3'>
-                        <label  className="block text-sm font-medium text-gray-700">
-                        Question:
-                        </label>
-                            <input
-                            type="text"
-                            name="question"
-                            id="question"
-                            className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
-                            placeholder="Enter Question"
-                            onChange={(e)=> setQuest({question:e.target.value})}
-                        />
-                    </div>
-                         
-                    <div  className='py-3'>
-                        <button className='bg-red-200 p-2 '  onClick={(e) =>{setChoices((oldArray, index) => [...oldArray, 'Option']);}}> Add Choices</button>
-                   
-                   
-                        { choices.map((c,index)  => (
-
-                             <input key={index}
-                             type="text"
-                             name="choice"
-                             id='choice'
-                             className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
-                             placeholder= {c==='Option'? c + (index+1): c} 
-                             onChange={(e) => updateChoices(index,e.target.value)}
-
-                            />
-                        ))  
-
-                        }
-                        <div>
-                        <button type='submit' className='bg-red-300' > SUBMIT</button>
-                    </div>
-
-                        
-                
-                           
-                    </div>
+                    <Menu.Item>
+                    {({ active }) => (
+                        <a
+                        href="#"
+                        className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                        )}
                     
+                        onClick={(e)=>setQuestionType('dropdown')}
+                        >
+                    DropDown
+                        </a>
+                    )}
+                    </Menu.Item>
 
+                    <Menu.Item>
+                    {({ active }) => (
+                        <a
+                        href="#"
+                        className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                        )}
+                        onClick={(e)=>setQuestionType('text')}
+                        >
+                    Text
+                        </a>
+                    )}
+                    </Menu.Item>
                     
-                </div>) 
-
-                : type ==='checkbox'?
-                (<p> Checkbox</p>) 
-                :type === 'text'?
-                (<p> Text</p>) 
-                :type === 'paragraph'?
-                (<p> Paragraph</p>) : 
-                (<p> </p>) 
-              }
-
-                
-           
+                    <Menu.Item>
+                    {({ active }) => (
+                        <a
+                        href="#"
+                        className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                        )}
+                    
+                        onClick={(e)=>setQuestionType('paragraph')}
+                        >
+                    Paragraph
+                        </a>
+                    )}
+                    </Menu.Item>
+                </div>
+                </Menu.Items>
+                </Transition>
+            </Menu>
         </div>
-        */}
 
+
+        {/* mapped Conditional Rendering forthe type of question in questions container: */}
         {  
            questions.map((q,index) => (
                <div key={index}>
@@ -304,20 +264,21 @@ const createForm = () => {
                               id="question"
                               className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
                               placeholder="Enter Question"
-                              onChange={(e)=> setQuest({question:e.target.value})}
+                              onChange={(e)=>updateQuestion(index, e.target.value)}
+                             
                           />
                       </div>
                            
                       <div  className='py-3 m-2'>
                           <button className='bg-gray-200 p-2 '  onClick={(e) =>{choicesHandler(index)}}> Add Choices</button>
-                          {q.choices.map((c,index)  => (
-                               <input key={index}
+                          {q.choices.map((c,i)  => (
+                               <input key={i}
                                type="text"
                                name="choice"
                                id='choice'
                                className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
-                               placeholder= {c==='Option'? c + (index+1): c} 
-                               onChange={(e) => updateChoices(index,e.target.value)}
+                               placeholder= {c==='Option'? c + (i+1): c} 
+                               onChange={(e) => updateChoices(index,i,e.target.value)}
                               />
                           ))  
                           }    
@@ -342,25 +303,63 @@ const createForm = () => {
                              id="question"
                              className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
                              placeholder="Enter Question"
-                             onChange={(e)=> setQuest({question:e.target.value})}
+                             onChange={(e)=>updateQuestion(index, e.target.value)}
+                             
                          />
                      </div>
                           
                      <div  className='py-3 m-2'>
                          <button className='bg-gray-200 p-2 '  onClick={(e) =>{choicesHandler(index)}}> Add Choices</button>
-                         {q.choices.map((c,index)  => (
-                              <input key={index}
+                         {q.choices.map((c,i)  => (
+                              <input key={i}
                               type="text"
                               name="choice"
                               id='choice'
                               className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
-                              placeholder= {c==='Option'? c + (index+1): c} 
-                              onChange={(e) => updateChoices(index,e.target.value)}
+                              placeholder= {c==='Option'? c + (i+1): c} 
+                              onChange={(e) => updateChoices(index,i,e.target.value)}
                              />
                          ))  
                          }    
                      </div> 
                  </div>) 
+      
+                 
+                 : q.type ==='dropdown'?
+
+                 (<div className='bg-gray-300 m-2 p2'> 
+                 <h1> Dropdown </h1>
+
+                 <div  className='py-3 m-2 p-2'>
+                     <label  className="block text-sm font-medium text-gray-700">
+                     Question:
+                     </label>
+                         <input
+                         type="text"
+                         name="question"
+                         id="question"
+                         className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
+                         placeholder="Enter Question"
+                         onChange={(e)=>updateQuestion(index, e.target.value)}
+                         
+                     />
+                 </div>
+                      
+                 <div  className='py-3 m-2'>
+                     <button className='bg-gray-200 p-2 '  onClick={(e) =>{choicesHandler(index)}}> Add Choices</button>
+                     {q.choices.map((c,i)  => (
+                          <input key={i}
+                          type="text"
+                          name="choice"
+                          id='choice'
+                          className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
+                          placeholder= {c==='Option'? c + (i+1): c} 
+                          onChange={(e) => updateChoices(index,i,e.target.value)}
+                         />
+                     ))  
+                     }    
+                 </div> 
+             </div>)            
 
                      :q.type === 'text'?
                         (<div className='bg-gray-300 m-2 p2'> 
@@ -376,7 +375,8 @@ const createForm = () => {
                                 id="question"
                                 className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
                                 placeholder="Enter Question"
-                                onChange={(e)=> setQuest({question:e.target.value})}
+                                onChange={(e)=>updateQuestion(index, e.target.value)}
+                                
                             />
                         </div>
                     </div>) 
@@ -395,24 +395,27 @@ const createForm = () => {
                                 id="question"
                                 className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
                                 placeholder="Enter Question"
-                                onChange={(e)=> setQuest({question:e.target.value})}
+                                onChange={(e)=>updateQuestion(index, e.target.value)}
                             />
                         </div>
                     </div>)  : 
                      (<p> </p>) 
                    }
                 </div>
-
            )
            )
         }
 
-       
+        {/* SUBMIT FORM */}
+             <div>
+                 <button className='bg-gray-200'
+                 type='submit'
+                 onClick={submitHandler}
+                 > SUBMIT </button>
 
 
 
-
-
+             </div>
 
         </div>
     );
@@ -421,4 +424,6 @@ const createForm = () => {
 export default createForm;
 
 
-///TODO question field, delete option , question.  save form 
+///TODO  delete option & question
+
+//// DONE add DROPDOWN type, update Choices, update question field, submit form 

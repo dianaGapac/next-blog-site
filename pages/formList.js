@@ -51,10 +51,6 @@ const formList = () => {
                </div>               
            )
            )}
-       
-
-
-           
          
         </div>
     );
