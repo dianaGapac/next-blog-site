@@ -10,10 +10,6 @@ const FirstPost = () => {
             </Head>
             
             <h1> THIS IS FIRST POST</h1>
-            <h1 className="text-5xl font-light underline">
-                Hello world!
-            </h1>
-
             <h2>
                 <Link href='/'>
                     <a> Back to Homepage</a>
