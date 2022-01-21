@@ -5,83 +5,68 @@ import data from '../../sample-data2'
 
 const answerForm = () => {
 
-    
+    const [form,setForm] = useState({})
     const [viewForm, setViewForm] = useState({})
     const [viewF, setViewF] = useState(false)
-
-    const userID = 'sample_user_ID'
-
-    const [responses,setResponses] = useState([])
     const [response,setResponse] = useState([])
+    const userID = 'sample_user_ID'
    
 
       const viewFormHandler = (index) =>{
-  
         let newForm = data[index]
-        let respObj = {
-            questionId:'',
-            userId: '',
-            answer:[]
+        setForm(newForm)
+        let res = []
+
+        for (var i=0; i<newForm.questions.length;i++){
+              let resObj = {
+                questId: i,
+                userId:'',
+                answer: []
+            }
+                res[i] = resObj
         }
-       
+
+        setResponse(res)
         setViewForm(newForm)
         setViewF(true)  
-
       }
-        
-      
 
       const updateAnswer = (index,value)=>{
-
         let newResponse = [...response]
-        
         let resObj = {
             questId: '',
             userId:'',
             answer: []
         }
-        
-
         if(newResponse[index] === undefined)
         {
             newResponse[index] = resObj
-            console.log('UNDEFINED')
         }
         let resp = newResponse[index]
+            resp.questId = index
+            resp.userId = userID
             resp.answer= [value]
             newResponse[index] = resp
-            console.log('new', newResponse)
             setResponse(newResponse) 
       }
 
-
       const addSelected = (index, value) =>{
-        
           let newResponse = [...response]
           let responseObj = {
             userId: '',
             answer:[]
         }
-
         if(newResponse[index] === undefined)
         {
             newResponse[index] = responseObj
-            console.log('undef')
         }
-        
         let resp = newResponse[index]
-       
-
+        resp.questId = index
+        resp.userId = userID
         resp.answer= [...resp.answer, value]
         newResponse[index] = resp
-
-
         console.log(newResponse)
-
         setResponse(newResponse)
-
-         console.log('add', response)   
-
       }
 
 
@@ -94,7 +79,7 @@ const answerForm = () => {
           responseObj.answer = filtered
           newResponse[index]= responseObj
           setResponse(newResponse)
-         console.log('add', response)  
+      
     }
 
       const checkBoxHandler = (index, checked, value ) =>{
@@ -109,8 +94,16 @@ const answerForm = () => {
       }
 
       const submitHandler =()=>{
-          console.log( 'RESPONSES',response)
-      }
+          let questions = form.questions
+          let resp = [...response]
+          for(var i=0; i<questions.length;i++){
+            if( resp[i].questId === i ) {
+                questions[i].responses = [...questions[i].responses, resp[i]]
+            }
+          } 
+          console.log('result', questions)
+    }
+
 
 
 

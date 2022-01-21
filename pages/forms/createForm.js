@@ -16,17 +16,14 @@ const createForm = () => {
         title: '',
         description:'',
         status: false,
-        questions:[],
-        responses:[
-            {
-              type:'',
-              question:'',
-              answers:[
-                    {
-                        user_id:'',
-                        answer:[]
-                    }
-              ]
+        questions:[{
+            type:'',
+            question:'',
+            choices:[],
+            responses:[{
+                userId: '',
+                answer: []
+            }] 
         }],
         result:{
             totalResponses:5,
