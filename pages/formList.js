@@ -8,7 +8,7 @@ const formList = () => {
         <div className="p-10 block">
            <h1 className='font-bold text-lg'>FORMS</h1>
 
-           {data.map( (f) =>(
+          {/*  {data.map( (f) =>(
                <div key={f.title}>
                     <h1>{f.title} </h1>
                     <h1>{f.description}</h1>
@@ -50,7 +50,7 @@ const formList = () => {
 
                </div>               
            )
-           )}
+                                    )} */}
          
         </div>
     );

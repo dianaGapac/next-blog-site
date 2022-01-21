@@ -19,6 +19,7 @@ const viewForms = () => {
 
     return (
       <div className="p-10 block">
+        
            <h1 className='font-bold text-lg'>FORMS </h1>
            {data.map((f, index) =>(
              <div className='bg-gray-200 p-3 w-200 m-2'>

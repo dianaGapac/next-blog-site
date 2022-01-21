@@ -265,7 +265,6 @@ const createForm = () => {
                               className="focus:ring-gray-100 block w-800 pl-7 pr-12 sm:text-sm border-gray-300 rounded-sm"
                               placeholder="Enter Question"
                               onChange={(e)=>updateQuestion(index, e.target.value)}
-                             
                           />
                       </div>
                            
@@ -282,6 +281,10 @@ const createForm = () => {
                               />
                           ))  
                           }    
+                      </div>
+                      <div>
+                        <button className='bg-gray-300'>Required</button>
+                        <button className='bg-gray-200'> Not Required</button>
                       </div>
                       
   
@@ -424,6 +427,5 @@ const createForm = () => {
 export default createForm;
 
 
-///TODO  delete option & question
-
+///TODO  delete option & question ,required button
 //// DONE add DROPDOWN type, update Choices, update question field, submit form 

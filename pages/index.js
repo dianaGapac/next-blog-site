@@ -50,7 +50,7 @@ export default function Home() {
         </div>
 
         <div>
-          <Link href='/formList'>
+          <Link href='/forms/answerForm'>
           <button className='bg-gray-400 p-2 mt-2'> ANSWER FORM </button> 
           </Link>
         </div>

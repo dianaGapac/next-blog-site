@@ -91,6 +91,33 @@
 
             ]
         },
+        {
+            type:'dropdown',
+            question:'Select your City',
+            choices:['Manila','Pasig','Pasay'],
+            responses:[
+                {
+                    user_id:'1',
+                    answer:['Manila']
+                },
+                {
+                    user_id:'2',
+                    answer:['Pasay']
+                },
+                {
+                    user_id:'3',
+                    answer:['Pasig']
+                },
+                {
+                    user_id:'4',
+                    answer:['Manila']
+                },
+                {
+                    user_id:'5',
+                    answer:['Pasig']
+                },
+          ]
+        }
     ],
 
     result:{
