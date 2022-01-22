@@ -179,9 +179,8 @@ const answerForm = () => {
                                  <div>
                                     <input type= 'text' placeholder='Type your answer...'
                                     onChange={(e)=>updateAnswer(index, e.target.value)}/>                       
-                                    </div>
+                                  </div>
                                ): <p></p>
-
                             }
                           </div>
                         ))}
@@ -197,3 +196,5 @@ const answerForm = () => {
 }
 
 export default answerForm;
+
+//every submit, maguupdate dn ung result

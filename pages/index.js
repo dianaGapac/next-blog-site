@@ -29,10 +29,15 @@ export default function Home() {
           </Link>
         </div>
 
-
         <div>
           <Link href='/forms/answerForm'>
           <button className='bg-gray-400 p-2 mt-2'> ANSWER FORM </button> 
+          </Link>
+        </div>
+
+        <div>
+          <Link href='/forms/viewResult'>
+          <button className='bg-gray-400 p-2 mt-2'> VIEW RESULT</button> 
           </Link>
         </div>
     

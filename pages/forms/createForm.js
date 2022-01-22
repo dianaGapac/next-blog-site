@@ -11,35 +11,26 @@ function classNames(...classes) {
 const createForm = () => {
 
     const [form, setForm] = useState({
-        
         id: '',
         title: '',
         description:'',
         status: false,
+        responseCount:0,
         questions:[{
             type:'',
             question:'',
+            required: false,
             choices:[],
             responses:[{
                 userId: '',
                 answer: []
-            }] 
+            }],
+            result:[{
+                choice:'',
+                count:''
+            }]
         }],
-        result:{
-            totalResponses:5,
-            tallyPerQuestion:[
-                {
-                    type:'',
-                    question:'',
-                    choicesTally:[
-                        {
-                            option: '',
-                            count: 0
-                        }
-                     ]
-               }
-            ]
-        }
+       
     } )
 
     ///USE STATE VARIABLES

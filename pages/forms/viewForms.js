@@ -22,6 +22,8 @@ const viewForms = () => {
  
 
 
+  
+
   const viewFormHandler = (index) =>{
       let newForm = data[index]
       setTitle(newForm.title)

@@ -5,11 +5,12 @@
     title: "Form Title 1",
     description:"This is a form description for form number 1",
     status: false,
-    required: false,
+    responseCount: 5,
     questions:[
         {
             type:'multiple choice',
             question:'Which is your favorite fruit?',
+            required: false,
             choices:['Apple','Banana','Orange'],
             responses:[
                 {
@@ -37,11 +38,26 @@
                     userId:'sample_user_5',
                     answer:['Apple']
                 },
-          ]
+          ],
+
+         result:[{
+                choice:'Apple',
+                count: 2
+            },
+            {
+                choice:'Banana',
+                count: 2
+            },
+            {
+                choice:'Orange ',
+                count: 1
+            },
+        ]
         },
         {
             type:'checkbox',
             question:'Select the type of gadgets you have at home.',
+            required: false,
             choices:['Smartphone','Laptop','Desktop'],
             responses:[
                 {
@@ -71,12 +87,27 @@
                   answer:['Smartphone','Desktop']
                 },
 
-               ]
+               ],
+
+               result:[{
+                      choice:'Smartphone',
+                      count: 4
+                  },
+                  {
+                      choice:'Laptop',
+                      count: 3
+                  },
+                  {
+                      choice:'Desktop',
+                      count: 3
+                  },
+              ]
             
         },
         {
             type:'text',
             question:'What is the name of your pet?',
+            required: false,
             choices:[],
             responses:[
                 {
@@ -105,12 +136,27 @@
                   answer:['Sky']
                 },
 
-            ]
+            ],
+
+            result:[{
+                   choice:'',
+                   count: 0
+               },
+               {
+                   choice:'',
+                   count: 0
+               },
+               {
+                   choice:' ',
+                   count: 0
+               },
+           ]
         },
         {
             type:'dropdown',
             question:'Select your City',
             choices:['Manila','Pasig','Pasay'],
+            required: false,
             responses:[
                 {
                     questId:'4',
@@ -137,59 +183,23 @@
                     userId:'sample_user_5',
                     answer:['Pasig']
                 },
-          ]
+          ],
+
+          result:[{
+                 choice:'Manila',
+                 count: 2
+             },
+             {
+                 choice:'Pasig',
+                 count: 2
+             },
+             {
+                 choice:'Pasay',
+                 count: 1
+             },
+         ]
         }
     ],
-
-    result:{
-        totalResponses:5,
-        tallyPerQuestion:[
-            {
-                type:'multiple choice',
-                question:'Which is your favorite fruit?',
-                choicesTally:[
-                    {
-                        option: 'Apple',
-                        count: 2
-                    },
-                    {
-                        option: 'Banana',
-                        count: 2
-                    },
-                    {
-                        option: 'Orange',
-                        count: 1
-                    },
-                 ]
-           },
-           { 
-                type:'multiple choice',
-                question:'Which is your favorite fruit?',
-                choicesTally:[
-                    {
-                        option: 'Smartphone',
-                        count: 2
-                    },
-                    {
-                        option: 'Laptop',
-                        count: 2
-                    },
-                    {
-                        option: 'Desktop',
-                        count: 1
-                    },
-            ]
-
-           },
-           { 
-                type:'multiple choice',
-                question:'Which is your favorite fruit?',
-                choicesTally:[],
-
-       }
-    ]
-
-    }
 
 },
 {
@@ -202,6 +212,7 @@
         {
             type:'multiple choice',
             question:'Which is your favorite fruit?',
+            required: false,
             choices:['Apple','Banana','Orange'],
             responses:[
                 {
@@ -234,6 +245,7 @@
         {
             type:'checkbox',
             question:'Select the type of gadgets you have at home.',
+            required: false,
             choices:['Smartphone','Laptop','Desktop'],
             responses:[
                 {
@@ -269,6 +281,7 @@
         {
             type:'text',
             question:'What is the name of your pet?',
+            required: false,
             choices:[],
             responses:[
                 {
@@ -303,6 +316,7 @@
             type:'dropdown',
             question:'Select your City',
             choices:['Manila','Pasig','Pasay'],
+            required: false,
             responses:[
                 {
                     questId:'4',
@@ -332,56 +346,6 @@
           ]
         }
     ],
-
-    result:{
-        totalResponses:5,
-        tallyPerQuestion:[
-            {
-                type:'multiple choice',
-                question:'Which is your favorite fruit?',
-                choicesTally:[
-                    {
-                        option: 'Apple',
-                        count: 2
-                    },
-                    {
-                        option: 'Banana',
-                        count: 2
-                    },
-                    {
-                        option: 'Orange',
-                        count: 1
-                    },
-                 ]
-           },
-           { 
-                type:'multiple choice',
-                question:'Which is your favorite fruit?',
-                choicesTally:[
-                    {
-                        option: 'Smartphone',
-                        count: 2
-                    },
-                    {
-                        option: 'Laptop',
-                        count: 2
-                    },
-                    {
-                        option: 'Desktop',
-                        count: 1
-                    },
-            ]
-
-           },
-           { 
-                type:'multiple choice',
-                question:'Which is your favorite fruit?',
-                choicesTally:[],
-
-       }
-    ]
-
-    }
 
 },
 
