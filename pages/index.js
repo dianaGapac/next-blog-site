@@ -15,20 +15,6 @@ export default function Home() {
 
       <main className=' m-auto p-5'>
 
-       {/* <div className='mx-auto block'  >
-            <Image
-                  src='/images/travel1.jpg'
-                  alt='travel cover photo'
-                  width={400}
-                  height={300} 
-                  className='rounded-tr-lg rounded-tl-lg'
-              /> 
-              <div className='bg-white p-8 rounded-bl-lg rounded-br-lg w-40'>
-
-              </div>  
-
-      </div>  */} 
-        
        <div className='block'>
         
         <div >            
@@ -38,16 +24,11 @@ export default function Home() {
         </div>  
 
         <div>
-          <Link href='/forms/viewForms'>
-          <button className='bg-gray-400 p-2 mt-2'> VIEW FORMS </button> 
+          <Link href='/forms/viewForms' >
+            <button className='bg-gray-400 p-2 mt-2'> VIEW FORM LIST  </button> 
           </Link>
         </div>
 
-        <div>
-          <Link href='/formList'>
-          <button className='bg-gray-400 p-2 mt-2'> VIEW RESPONSE </button> 
-          </Link>
-        </div>
 
         <div>
           <Link href='/forms/answerForm'>

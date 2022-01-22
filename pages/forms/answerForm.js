@@ -5,19 +5,22 @@ import data from '../../sample-data2'
 
 const answerForm = () => {
 
-    const [form,setForm] = useState({})
-    const [viewForm, setViewForm] = useState({})
-    const [viewF, setViewF] = useState(false)
-    const [response,setResponse] = useState([])
+
+    const [form,setForm] = useState({})  //holds the form after answer submitted
+    const [viewForm, setViewForm] = useState({})  //holds the form object that was clicked by the user
+    const [viewF, setViewF] = useState(false)  // just a boolean to view the form
+    const [response,setResponse] = useState([]) //holds all the answers of the user
+
     const userID = 'sample_user_ID'
    
-
+  // view form when clicked 'view form'
       const viewFormHandler = (index) =>{
         let newForm = data[index]
-        setForm(newForm)
-        let res = []
 
-        for (var i=0; i<newForm.questions.length;i++){
+        setForm(newForm)  
+        let res = []
+        //setting obj model for response
+        for (var i=0; i<newForm.questions.length;i++){   
               let resObj = {
                 questId: i,
                 userId:'',
@@ -26,22 +29,15 @@ const answerForm = () => {
                 res[i] = resObj
         }
 
-        setResponse(res)
-        setViewForm(newForm)
-        setViewF(true)  
+        setResponse(res)    // to make the responses  not null/undefined even di sinagutan ung question
+        setViewForm(newForm) // used in viewing the form
+        setViewF(true)
       }
 
+  //update the answeer on change for alll type of question except checkbox
       const updateAnswer = (index,value)=>{
         let newResponse = [...response]
-        let resObj = {
-            questId: '',
-            userId:'',
-            answer: []
-        }
-        if(newResponse[index] === undefined)
-        {
-            newResponse[index] = resObj
-        }
+       
         let resp = newResponse[index]
             resp.questId = index
             resp.userId = userID
@@ -50,16 +46,12 @@ const answerForm = () => {
             setResponse(newResponse) 
       }
 
+
+  //update checkbox when selected
       const addSelected = (index, value) =>{
           let newResponse = [...response]
-          let responseObj = {
-            userId: '',
-            answer:[]
-        }
-        if(newResponse[index] === undefined)
-        {
-            newResponse[index] = responseObj
-        }
+
+        //updating answer
         let resp = newResponse[index]
         resp.questId = index
         resp.userId = userID
@@ -69,19 +61,21 @@ const answerForm = () => {
         setResponse(newResponse)
       }
 
-
+  // removing answer on checkbox when deselected
       const removeSelected =(index,value)=> {
-         
+  
           let newResponse = [...response]
           let responseObj = newResponse[index]
           let filtered = responseObj.answer.filter((c => c!== value ))
-
           responseObj.answer = filtered
           newResponse[index]= responseObj
           setResponse(newResponse)
       
     }
 
+
+
+  //checkbox handler for selecting and deselecting
       const checkBoxHandler = (index, checked, value ) =>{
 
         if(checked){
@@ -93,9 +87,13 @@ const answerForm = () => {
 
       }
 
+  // submit form (kulang pa yan ng mga validation kineme)
       const submitHandler =()=>{
           let questions = form.questions
           let resp = [...response]
+           
+          //
+          //transferring to form model mismo na pweding ireturn to back-end   
           for(var i=0; i<questions.length;i++){
             if( resp[i].questId === i ) {
                 questions[i].responses = [...questions[i].responses, resp[i]]
@@ -111,7 +109,7 @@ const answerForm = () => {
         <div className="p-10 block">
            <h1 className='font-bold text-lg'>FORMS </h1>
           
-
+            {/* mapping the form list*/}
            {data.map((f, index) =>(
              <div key={index} className='bg-gray-200 p-3 w-200 m-2'>
           
@@ -123,8 +121,9 @@ const answerForm = () => {
                   > ANSWER FORM</button>
              </div>
            ))}
-
-              { viewF === true &&
+         
+           {/*if viniew to answer ung certain form */}
+              { viewF === true &&  
                   (
                     <div  >
                       <h1 className='font-bold text-lg' > ANSWER FORM </h1>
@@ -132,6 +131,7 @@ const answerForm = () => {
                           <div key={index}>
 
                             <h1 className='font-medium text-md'> Q{index+1}: {q.question} </h1>
+                            {/*Conditional rendering depends on the type of question */}
                             {
                                q.type ==='multiple choice'?
                                (

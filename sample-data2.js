@@ -5,6 +5,7 @@
     title: "Form Title 1",
     description:"This is a form description for form number 1",
     status: false,
+    required: false,
     questions:[
         {
             type:'multiple choice',
@@ -12,23 +13,28 @@
             choices:['Apple','Banana','Orange'],
             responses:[
                 {
-                    user_id:'1',
+                    questId:'1',
+                    userId:'sample_user_1',
                     answer:['Banana']
                 },
                 {
-                    user_id:'2',
+                    questId:'1',
+                    userId:'sample_user_2',
                     answer:['Apple']
                 },
                 {
-                    user_id:'3',
+                    questId:'1',
+                    userId:'sample_user_3',
                     answer:['Orange']
                 },
                 {
-                    user_id:'4',
+                    questId:'1',
+                    userId:'sample_user_4',
                     answer:['Banana']
                 },
                 {
-                    user_id:'5',
+                    questId:'1',
+                    userId:'sample_user_5',
                     answer:['Apple']
                 },
           ]
@@ -39,28 +45,33 @@
             choices:['Smartphone','Laptop','Desktop'],
             responses:[
                 {
-                   user_id:'1',
+                   questId:'2',
+                   userId:'sample_user_1',
                    answer:['Smartphone']
                 },
                 {
-                  user_id:'2',
-                  answer:['Smartphone','Laptop']
+                   questId:'2',
+                   userId:'sample_user_2',
+                   answer:['Smartphone','Laptop']
                 },
                 {
-                  user_id:'3',
-                  answer:['Smartphone','Laptop','Desktop']
+                   questId:'2',
+                   userId:'sample_user_3',
+                   answer:['Smartphone','Laptop','Desktop']
                 },
                 {
+                  questId:'2',
+                  userId:'sample_user_4',
                   user_id:'4',
                   answer:['Laptop','Desktop']
                 },
                 {
-                  user_id:'5',
+                  questId:'2',
+                  userId:'sample_user_5',
                   answer:['Smartphone','Desktop']
                 },
 
                ]
-            
             
         },
         {
@@ -69,23 +80,28 @@
             choices:[],
             responses:[
                 {
-                  user_id:'1',
-                  answer:['Mocha']
+                   questId:'3',
+                   userId:'sample_user_1',                   
+                   answer:['Mocha']
                 },
                 {
-                  user_id:'2',
+                  questId:'3',
+                  userId:'sample_user_2',
                   answer:['Brownie']
                 },
                 {
-                  user_id:'3',
+                  questId:'3',
+                  userId:'sample_user_3',
                   answer:['Bruno']
                 },
                 {
-                  user_id:'4',
+                  questId:'3',
+                  userId:'sample_user_4',
                   answer:['Luna']
                 },
                 {
-                  user_id:'5',
+                  questId:'3',
+                  userId:'sample_user_5',
                   answer:['Sky']
                 },
 
@@ -97,23 +113,28 @@
             choices:['Manila','Pasig','Pasay'],
             responses:[
                 {
-                    user_id:'1',
+                    questId:'4',
+                    userId:'sample_user_1',
                     answer:['Manila']
                 },
                 {
-                    user_id:'2',
+                    questId:'4',
+                    userId:'sample_user_2',
                     answer:['Pasay']
                 },
                 {
-                    user_id:'3',
+                    questId:'4',
+                    userId:'sample_user_3',
                     answer:['Pasig']
                 },
                 {
-                    user_id:'4',
+                    questId:'4',
+                    userId:'sample_user_4',
                     answer:['Manila']
                 },
                 {
-                    user_id:'5',
+                    questId:'4',
+                    userId:'sample_user_5',
                     answer:['Pasig']
                 },
           ]
@@ -176,6 +197,7 @@
     title: "Form Title 2",
     description:"This is a form description for form number 2",
     status: false,
+    required: false,
     questions:[
         {
             type:'multiple choice',
@@ -183,23 +205,28 @@
             choices:['Apple','Banana','Orange'],
             responses:[
                 {
-                    user_id:'1',
+                    questId:'1',
+                    userId:'sample_user_1',
                     answer:['Banana']
                 },
                 {
-                    user_id:'2',
+                    questId:'1',
+                    user_id:'sample_user_2',
                     answer:['Apple']
                 },
                 {
-                    user_id:'3',
+                    questId:'1',
+                    user_id:'sample_user_3',
                     answer:['Orange']
                 },
                 {
-                    user_id:'4',
+                    questId:'1',
+                    user_id:'sample_user_4',
                     answer:['Banana']
                 },
                 {
-                    user_id:'5',
+                    questId:'1',
+                    user_id:'sample_user_5',
                     answer:['Apple']
                 },
           ]
@@ -210,28 +237,33 @@
             choices:['Smartphone','Laptop','Desktop'],
             responses:[
                 {
-                   user_id:'1',
+                   questId:'2',
+                   userId:'sample_user_1',
                    answer:['Smartphone']
                 },
                 {
-                  user_id:'2',
-                  answer:['Smartphone','Laptop']
+                   questId:'2',
+                   userId:'sample_user_2',
+                   answer:['Smartphone','Laptop']
                 },
                 {
-                  user_id:'3',
-                  answer:['Smartphone','Laptop','Desktop']
+                   questId:'2',
+                   userId:'sample_user_3',
+                   answer:['Smartphone','Laptop','Desktop']
                 },
                 {
+                  questId:'2',
+                  userId:'sample_user_4',
                   user_id:'4',
                   answer:['Laptop','Desktop']
                 },
                 {
-                  user_id:'5',
+                  questId:'2',
+                  userId:'sample_user_5',
                   answer:['Smartphone','Desktop']
                 },
 
                ]
-            
             
         },
         {
@@ -240,28 +272,65 @@
             choices:[],
             responses:[
                 {
-                  user_id:'1',
-                  answer:['Mocha']
+                   questId:'3',
+                   userId:'sample_user_1',                   
+                   answer:['Mocha']
                 },
                 {
-                  user_id:'2',
+                  questId:'3',
+                  userId:'sample_user_2',
                   answer:['Brownie']
                 },
                 {
-                  user_id:'3',
+                  questId:'3',
+                  userId:'sample_user_3',
                   answer:['Bruno']
                 },
                 {
-                  user_id:'4',
+                  questId:'3',
+                  userId:'sample_user_4',
                   answer:['Luna']
                 },
                 {
-                  user_id:'5',
+                  questId:'3',
+                  userId:'sample_user_5',
                   answer:['Sky']
                 },
 
             ]
         },
+        {
+            type:'dropdown',
+            question:'Select your City',
+            choices:['Manila','Pasig','Pasay'],
+            responses:[
+                {
+                    questId:'4',
+                    userId:'sample_user_1',
+                    answer:['Manila']
+                },
+                {
+                    questId:'4',
+                    userId:'sample_user_2',
+                    answer:['Pasay']
+                },
+                {
+                    questId:'4',
+                    userId:'sample_user_3',
+                    answer:['Pasig']
+                },
+                {
+                    questId:'4',
+                    userId:'sample_user_4',
+                    answer:['Manila']
+                },
+                {
+                    questId:'4',
+                    userId:'sample_user_5',
+                    answer:['Pasig']
+                },
+          ]
+        }
     ],
 
     result:{
